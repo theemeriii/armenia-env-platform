@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Armenia Environmental Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="noise-overlay"></div>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-mark">АЕИ</div>
+        <div class="header-text">
+          <h1>Armenia Environmental Intelligence</h1>
+          <p class="subtitle">Regional environmental data · Satellite monitoring · Public access</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill">
+          <span class="pulse"></span>
+          <span>MVP Preview · Data: Estimated</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+
+      <!-- LEFT: Map -->
+      <div class="map-section">
+        <div class="section-label">REGIONAL MAP</div>
+        <div id="map"></div>
+        <div class="map-legend">
+          <div class="legend-title">Air Quality Index</div>
+          <div class="legend-items">
+            <span class="legend-dot good"></span><span>Good (0–50)</span>
+            <span class="legend-dot moderate"></span><span>Moderate (51–100)</span>
+            <span class="legend-dot poor"></span><span>Poor (100+)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Panel -->
+      <div class="info-section">
+        <div id="welcome-panel" class="panel-card welcome">
+          <div class="welcome-icon">🗺️</div>
+          <h2>Select a Region</h2>
+          <p>Click any marker on the map to explore environmental indicators for that region of Armenia.</p>
+          <div class="welcome-metrics">
+            <div class="wm-item"><span class="wm-num">11</span><span class="wm-label">Regions</span></div>
+            <div class="wm-item"><span class="wm-num">4</span><span class="wm-label">Indicators</span></div>
+            <div class="wm-item"><span class="wm-num">2025</span><span class="wm-label">Baseline Year</span></div>
+          </div>
+        </div>
+
+        <div id="region-panel" class="panel-card region-detail" style="display:none;">
+          <div class="region-header">
+            <div>
+              <div class="region-tag">REGION</div>
+              <h2 id="region-name"></h2>
+            </div>
+            <button class="close-btn" onclick="closePanel()">✕</button>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-tile" id="tile-air">
+              <div class="metric-icon">🌡️</div>
+              <div class="metric-body">
+                <div class="metric-label">AIR QUALITY</div>
+                <div class="metric-value" id="air-value"></div>
+                <div class="metric-status" id="air-status"></div>
+                <div class="metric-desc" id="air-desc"></div>
+              </div>
+            </div>
+
+            <div class="metric-tile" id="tile-veg">
+              <div class="metric-icon">🌿</div>
+              <div class="metric-body">
+                <div class="metric-label">VEGETATION HEALTH</div>
+                <div class="metric-value" id="veg-value"></div>
+                <div class="metric-status" id="veg-status"></div>
+                <div class="metric-desc" id="veg-desc"></div>
+              </div>
+            </div>
+
+            <div class="metric-tile" id="tile-fire">
+              <div class="metric-icon">🔥</div>
+              <div class="metric-body">
+                <div class="metric-label">FIRE RISK</div>
+                <div class="metric-value" id="fire-value"></div>
+                <div class="metric-status" id="fire-status"></div>
+                <div class="metric-desc" id="fire-desc"></div>
+              </div>
+            </div>
+
+            <div class="metric-tile" id="tile-land">
+              <div class="metric-icon">🏔️</div>
+              <div class="metric-body">
+                <div class="metric-label">LAND COVER CHANGE</div>
+                <div class="metric-value" id="land-value"></div>
+                <div class="metric-status" id="land-status"></div>
+                <div class="metric-desc" id="land-desc"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-note">
+            ⚠️ Data shown is estimated baseline for MVP. Real-time integration via Google Earth Engine and satellite APIs is planned for Phase 2.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Armenia Environmental Intelligence Platform · Mini Capstone Project</span>
+      <span>Built with Leaflet.js · OpenStreetMap · Data estimated for MVP</span>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
