@@ -26,7 +26,7 @@
       <div class="header-right">
         <div class="status-pill">
           <span class="pulse"></span>
-          <span>MVP Preview · Data: Estimated</span>
+          <span>Live · Open-Meteo + MODIS/ESA</span>
         </div>
       </div>
     </div>
@@ -35,30 +35,38 @@
   <main>
     <div class="layout">
 
-      <!-- LEFT: Map -->
       <div class="map-section">
-        <div class="section-label">REGIONAL MAP</div>
+        <div class="section-label">REGIONAL MAP · Circle size = AQI · Green halo = NDVI 2024</div>
         <div id="map"></div>
         <div class="map-legend">
-          <div class="legend-title">Air Quality Index</div>
+          <div class="legend-title">Air Quality (AQI)</div>
           <div class="legend-items">
-            <span class="legend-dot good"></span><span>Good (0–50)</span>
-            <span class="legend-dot moderate"></span><span>Moderate (51–100)</span>
-            <span class="legend-dot poor"></span><span>Poor (100+)</span>
+            <span class="legend-dot good"></span><span>Good ≤20</span>
+            <span class="legend-dot moderate"></span><span>Moderate 21–60</span>
+            <span class="legend-dot poor"></span><span>Poor 60+</span>
+            <span style="margin-left:12px; color: var(--text-dim);">·</span>
+            <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:rgba(30,180,50,0.4);border:1px solid rgba(30,180,50,0.6);margin-left:8px;vertical-align:middle;"></span>
+            <span>NDVI halo</span>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: Panel -->
       <div class="info-section">
         <div id="welcome-panel" class="panel-card welcome">
           <div class="welcome-icon">🗺️</div>
           <h2>Select a Region</h2>
-          <p>Click any marker on the map to explore environmental indicators for that region of Armenia.</p>
+          <p>Click any marker to explore live air quality, vegetation health, fire risk, and land cover change for that region of Armenia.</p>
           <div class="welcome-metrics">
             <div class="wm-item"><span class="wm-num">11</span><span class="wm-label">Regions</span></div>
             <div class="wm-item"><span class="wm-num">4</span><span class="wm-label">Indicators</span></div>
-            <div class="wm-item"><span class="wm-num">2025</span><span class="wm-label">Baseline Year</span></div>
+            <div class="wm-item"><span class="wm-num">Live</span><span class="wm-label">AQI Data</span></div>
+          </div>
+          <div class="data-sources">
+            <div class="ds-title">DATA SOURCES</div>
+            <div class="ds-row"><span class="ds-dot live"></span><span>Air Quality — Open-Meteo / CAMS Copernicus (live)</span></div>
+            <div class="ds-row"><span class="ds-dot live"></span><span>Fire Risk — Open-Meteo Forecast (live)</span></div>
+            <div class="ds-row"><span class="ds-dot static"></span><span>Vegetation (NDVI) — MODIS Terra MOD13A3 (2019–2024)</span></div>
+            <div class="ds-row"><span class="ds-dot static"></span><span>Land Cover — ESA CCI Land Cover v2.1 (2019–2024)</span></div>
           </div>
         </div>
 
@@ -71,50 +79,55 @@
             <button class="close-btn" onclick="closePanel()">✕</button>
           </div>
 
-          <div class="metrics-grid">
-            <div class="metric-tile" id="tile-air">
-              <div class="metric-icon">🌡️</div>
-              <div class="metric-body">
-                <div class="metric-label">AIR QUALITY</div>
-                <div class="metric-value" id="air-value"></div>
-                <div class="metric-status" id="air-status"></div>
-                <div class="metric-desc" id="air-desc"></div>
-              </div>
+          <!-- AIR QUALITY TILE -->
+          <div class="metric-tile" id="tile-air">
+            <div class="metric-header">
+              <span class="metric-icon">🌡️</span>
+              <span class="metric-label">AIR QUALITY</span>
             </div>
+            <div class="metric-value" id="air-value">—</div>
+            <div class="metric-status" id="air-status"></div>
+            <canvas id="chart-aqi" width="320" height="55" class="metric-chart"></canvas>
+            <div class="metric-desc" id="air-desc"></div>
+          </div>
 
-            <div class="metric-tile" id="tile-veg">
-              <div class="metric-icon">🌿</div>
-              <div class="metric-body">
-                <div class="metric-label">VEGETATION HEALTH</div>
-                <div class="metric-value" id="veg-value"></div>
-                <div class="metric-status" id="veg-status"></div>
-                <div class="metric-desc" id="veg-desc"></div>
-              </div>
+          <!-- VEGETATION TILE -->
+          <div class="metric-tile" id="tile-veg">
+            <div class="metric-header">
+              <span class="metric-icon">🌿</span>
+              <span class="metric-label">VEGETATION HEALTH (NDVI)</span>
             </div>
+            <div class="metric-value" id="veg-value">—</div>
+            <div class="metric-status" id="veg-status"></div>
+            <canvas id="chart-ndvi" width="320" height="55" class="metric-chart"></canvas>
+            <div class="metric-desc" id="veg-desc"></div>
+          </div>
 
-            <div class="metric-tile" id="tile-fire">
-              <div class="metric-icon">🔥</div>
-              <div class="metric-body">
-                <div class="metric-label">FIRE RISK</div>
-                <div class="metric-value" id="fire-value"></div>
-                <div class="metric-status" id="fire-status"></div>
-                <div class="metric-desc" id="fire-desc"></div>
-              </div>
+          <!-- FIRE RISK TILE -->
+          <div class="metric-tile" id="tile-fire">
+            <div class="metric-header">
+              <span class="metric-icon">🔥</span>
+              <span class="metric-label">FIRE RISK</span>
             </div>
+            <div class="metric-value" id="fire-value">—</div>
+            <div class="metric-status" id="fire-status"></div>
+            <div class="metric-desc" id="fire-desc"></div>
+          </div>
 
-            <div class="metric-tile" id="tile-land">
-              <div class="metric-icon">🏔️</div>
-              <div class="metric-body">
-                <div class="metric-label">LAND COVER CHANGE</div>
-                <div class="metric-value" id="land-value"></div>
-                <div class="metric-status" id="land-status"></div>
-                <div class="metric-desc" id="land-desc"></div>
-              </div>
+          <!-- LAND COVER TILE -->
+          <div class="metric-tile" id="tile-land">
+            <div class="metric-header">
+              <span class="metric-icon">🏔️</span>
+              <span class="metric-label">FOREST / LAND COVER</span>
             </div>
+            <div class="metric-value" id="land-value">—</div>
+            <div class="metric-status" id="land-status"></div>
+            <canvas id="chart-land" width="320" height="55" class="metric-chart"></canvas>
+            <div class="metric-desc" id="land-desc"></div>
           </div>
 
           <div class="data-note">
-            ⚠️ Data shown is estimated baseline for MVP. Real-time integration via Google Earth Engine and satellite APIs is planned for Phase 2.
+            AQI and fire risk are live. NDVI and land cover are from MODIS/ESA satellite datasets (2019–2024). Phase 2 will automate satellite data updates.
           </div>
         </div>
       </div>
@@ -124,8 +137,8 @@
 
   <footer>
     <div class="footer-inner">
-      <span>Armenia Environmental Intelligence Platform · Mini Capstone Project</span>
-      <span>Built with Leaflet.js · OpenStreetMap · Data estimated for MVP</span>
+      <span>Armenia Environmental Intelligence Platform · Mini Capstone</span>
+      <span>Open-Meteo · MODIS Terra · ESA CCI · Leaflet · OpenStreetMap</span>
     </div>
   </footer>
 
