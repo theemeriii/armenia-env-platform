@@ -1,8 +1,8 @@
 # Armenia Environmental Intelligence Platform
 
-An interactive public-facing web platform for exploring environmental conditions across Armenia's 11 administrative regions (marzes). Users can click on any region to view key environmental indicators including air quality, vegetation health, fire risk, and land cover change.
+An interactive public-facing web platform for exploring environmental conditions across Armenia's 11 administrative regions (marzes). Users can click on any region to view key environmental indicators, including air quality, vegetation health, fire risk, and land cover change.
 
-Built as a mini capstone project with the goal of making environmental data about Armenia more accessible and understandable — for everyday citizens, educators, and policymakers alike.
+Built as a mini capstone project with the goal of making environmental data about Armenia more accessible and understandable for everyday citizens, educators, and policymakers alike.
 
 **Live site:** [armenia-env-platform.vercel.app](https://armenia-env-platform.vercel.app)
 
