@@ -16,7 +16,7 @@ Built as a mini capstone project with the goal of making environmental data abou
 - Fully responsive layout
 
 ## File Structure
-├── index.html          # Main page structure
+├── index.html          # Main page structure //
 ├── style.css           # Styling and dark theme
 ├── script.js           # Map logic and interactivity (Leaflet.js)
 ├── data.js             # Regional environmental data
@@ -35,7 +35,7 @@ Environmental values in this MVP are estimated baselines used for prototyping. P
 
 ## Roadmap
 
-- [ ] Real-time data integration via Google Earth Engine
+- [ ] Real-time data integration
 - [ ] Reproducible Python pipelines for processing satellite data
 - [ ] Historical trend views and time-series charts
 - [ ] ML-based environmental risk estimation (reach goal)
