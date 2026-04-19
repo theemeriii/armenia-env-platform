@@ -21,7 +21,8 @@ const armeniaRegions = {
       vegetationKm2: [62, 60, 58, 57, 56, 54],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Urban region. Limited green space under pressure from development. NDVI reflects parks and peri-urban vegetation."
+    context: "Yerevan is Armenia’s largest urban center, with dense infrastructure and limited natural vegetation. Green space is mainly concentrated in parks and peri-urban areas, and land use is heavily shaped by construction and urban expansion.",
+    future: "Urban expansion and infrastructure development are likely to continue putting pressure on vegetation cover. However, policies focused on urban greening and park development could improve environmental conditions over time."
   },
   "Ararat": {
     coords: [39.8787, 44.7050],
@@ -38,7 +39,8 @@ const armeniaRegions = {
       vegetationKm2: [420, 428, 430, 435, 438, 436],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Irrigated lowlands along Araks River. Strong agricultural NDVI. Orchard and farmland expansion visible since 2020."
+    context: "Ararat is one of Armenia’s most important agricultural regions, supported by irrigation systems connected to the Araks River. The landscape is dominated by farmland, orchards, and vineyards.",
+    future: "Agricultural productivity is likely to remain strong, but water availability and climate variability may increasingly affect vegetation health and land use stability."
   },
   "Shirak": {
     coords: [40.7855, 43.8473],
@@ -55,7 +57,8 @@ const armeniaRegions = {
       vegetationKm2: [580, 578, 575, 572, 570, 568],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Highland steppe plateau. Stable grasslands with slight long-term decline in vegetation cover. Main crop is wheat."
+    context: "Shirak is a highland plateau region characterized by grasslands and agricultural land. The region has relatively low forest cover and is heavily influenced by climate conditions.",
+    future: "Vegetation levels may fluctuate depending on climate variability, particularly rainfall. Long-term trends could show gradual decline if land degradation continues."
   },
   "Lori": {
     coords: [40.9709, 44.4986],
@@ -72,7 +75,8 @@ const armeniaRegions = {
       vegetationKm2: [1580, 1565, 1548, 1535, 1520, 1505],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Dense mixed forest zone. Gradual deforestation near northern border areas. Forest cover has declined ~5% since 2019."
+    context: "Lori contains some of Armenia’s most important forest ecosystems, with dense vegetation and high biodiversity. Forest resources play a key ecological role in the region.",
+    future: "Recent patterns suggest that forest pressure may continue in some areas. Conservation efforts could stabilize these trends, but land use changes may still affect forest coverage."
   },
   "Gegharkunik": {
     coords: [40.3333, 45.3500],
@@ -89,7 +93,8 @@ const armeniaRegions = {
       vegetationKm2: [1120, 1128, 1135, 1142, 1150, 1158],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Lake Sevan basin. Wetland and shoreline vegetation has been slowly recovering following water level management since 2021."
+    context: "Gegharkunik surrounds Lake Sevan, one of Armenia’s most important natural resources. The region includes wetlands, grasslands, and agricultural zones influenced by water levels.",
+    future: "Vegetation conditions may improve if water management policies remain stable. However, ecological balance in the region remains sensitive to changes in lake levels and climate."
   },
   "Syunik": {
     coords: [39.2000, 46.2500],
@@ -106,7 +111,8 @@ const armeniaRegions = {
       vegetationKm2: [1840, 1810, 1778, 1745, 1714, 1682],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Mountainous south. Significant land cover loss linked to copper and molybdenum mining expansion in Kajaran and Agarak districts."
+    context: "Syunik is a mountainous region with both forested areas and significant mining activity. Extractive industries play an important economic role but can impact land cover and ecosystems.",
+    future: "If mining activity continues at current levels, land cover pressures may persist. Environmental regulation and restoration efforts could influence whether vegetation stabilizes or declines."
   },
   "Kotayk": {
     coords: [40.4631, 44.7967],
@@ -123,7 +129,8 @@ const armeniaRegions = {
       vegetationKm2: [760, 748, 736, 724, 712, 700],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Peri-urban fringe of Yerevan. Suburban sprawl and industrial zones are steadily converting agricultural and forested land."
+    context: "Kotayk lies near Yerevan and is influenced by suburban expansion and industrial activity. Land use includes a mix of agriculture, forest, and rapidly developing areas.",
+    future: "Urban expansion is likely to continue affecting land use. Without careful planning, vegetation and forest areas may gradually decline."
   },
   "Tavush": {
     coords: [40.8792, 45.1403],
@@ -140,7 +147,8 @@ const armeniaRegions = {
       vegetationKm2: [1820, 1822, 1824, 1826, 1828, 1828],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Highest vegetation density in Armenia. Broadleaf forest largely stable due to conservation efforts. Minor boundary fluctuations only."
+    context: "Tavush has some of the highest forest coverage in Armenia and is known for relatively stable ecosystems. Conservation efforts have helped maintain vegetation levels.",
+    future: "Forest conditions are likely to remain relatively stable, though climate variability and external pressures could still affect long-term ecological balance."
   },
   "Vayots Dzor": {
     coords: [39.7611, 45.3333],
@@ -157,7 +165,8 @@ const armeniaRegions = {
       vegetationKm2: [680, 688, 696, 705, 714, 722],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Vineyard and orchard region. Agricultural land expansion has driven modest vegetation cover growth. Winery sector expanding."
+    context: "Vayots Dzor is known for vineyards and agricultural activity adapted to mountainous terrain. Vegetation is influenced by both farming and natural conditions.",
+    future: "Agricultural development may continue to increase vegetation in cultivated areas, though climate conditions will play an important role in long-term sustainability."
   },
   "Armavir": {
     coords: [40.1547, 44.0381],
@@ -174,7 +183,8 @@ const armeniaRegions = {
       vegetationKm2: [510, 518, 526, 534, 542, 550],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Heavily irrigated agricultural flatlands fed by Araks River. Consistent productivity gains. One of the most agriculturally active regions."
+    context: "Armavir is a highly productive agricultural region with extensive irrigated farmland. It plays a key role in Armenia’s food production, with crops and orchards dominating land use.",
+    future: "Continued agricultural expansion may increase vegetation cover in the short term, but long-term sustainability will depend on water management and soil conditions."
   },
   "Aragatsotn": {
     coords: [40.3561, 44.2269],
@@ -191,6 +201,7 @@ const armeniaRegions = {
       vegetationKm2: [1240, 1244, 1248, 1252, 1256, 1258],
       years: [2019, 2020, 2021, 2022, 2023, 2024]
     },
-    context: "Alpine slopes of Mt. Aragats. Stable highland pastures and meadows. Snowmelt supports vegetation into late summer."
+    context: "Aragatsotn includes mountainous terrain and high-altitude pastures. Vegetation patterns are shaped by elevation, grazing, and seasonal climate conditions.",
+    future: "Vegetation is expected to remain relatively stable, though climate variability and land use practices may influence long-term trends."
   }
 };

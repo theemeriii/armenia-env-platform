@@ -45,20 +45,45 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
-// ── NDVI overlay circles ───────────────────────────────────────────────────────
-// Behind the AQI markers, we draw larger semi-transparent circles colored by
-// 2024 NDVI to give the map a vegetation "heat map" feel.
-Object.entries(armeniaRegions).forEach(([name, d]) => {
-  const ndvi2024 = d.ndviHistory[d.ndviHistory.length - 1].value;
-  L.circle(d.coords, {
-    radius: 28000,          // 28 km radius — visible but not overlapping
-    fillColor: ndviColor(ndvi2024),
-    fillOpacity: 0.18,
-    color: ndviColor(ndvi2024),
-    weight: 1,
-    opacity: 0.3
-  }).addTo(map).bindTooltip(`${name} · NDVI ${ndvi2024}`, { sticky: true });
-});
+
+// Load Armenia regions and color them
+fetch('armenia-marz.json')
+  .then(res => res.json())
+  .then(geo => {
+
+    function getColor(regionName) {
+      const data = armeniaRegions[regionName];
+      if (!data) return '#333';
+
+      const forest = data.landCover.forestKm2.slice(-1)[0];
+
+      if (forest > 1000) return '#2e7d32';
+      if (forest > 500) return '#4caf50';
+      if (forest > 100) return '#81c784';
+      return '#c8e6c9';
+    }
+
+    L.geoJSON(geo, {
+      style: feature => ({
+        fillColor: getColor(feature.properties.name),
+        weight: 1,
+        color: '#1b2a1f',
+        fillOpacity: 0.6
+      }),
+
+      onEachFeature: (feature, layer) => {
+        const name = feature.properties.name;
+
+        layer.on('click', () => {
+          if (markers[name]) {
+            showRegion(name, markers[name].marker);
+          }
+        });
+      }
+
+    }).addTo(map);
+
+  });
 
 // ── AQI markers ───────────────────────────────────────────────────────────────
 let selectedMarker = null;
@@ -242,7 +267,30 @@ async function showRegion(name, marker) {
   } catch(err) {
     setMetric('air',  { value: 'Unavailable', status: 'API error', desc: 'Could not fetch live data.', cls: 'neutral' });
     setMetric('fire', { value: 'Unavailable', status: 'API error', desc: 'Could not fetch live data.', cls: 'neutral' });
-  }
+  } 
+  
+  // Add context + future sections
+  const existing = document.getElementById('extra-info');
+  if (existing) existing.remove();
+
+  const extra = document.createElement('div');
+  extra.id = 'extra-info';
+  extra.style.marginTop = '15px';
+
+  extra.innerHTML = `
+    <div style="margin-top:10px;">
+      <strong>Regional Context</strong>
+      <p style="font-size:0.7rem; color:#aaa;">${d.context}</p>
+    </div>
+
+    <div style="margin-top:10px;">
+      <strong>Future Outlook</strong>
+      <p style="font-size:0.7rem; color:#aaa;">${d.future}</p>
+    </div>
+  `;
+
+  document.getElementById('region-panel').appendChild(extra); 
+  
 }
 
 function setMetric(key, d) {
