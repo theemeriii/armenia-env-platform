@@ -20,7 +20,7 @@ Built as a mini capstone project with the goal of making environmental data abou
 ├── style.css     &emsp;   &emsp; &emsp;&emsp; &emsp;    # Styling and dark theme  <br>
 ├── script.js     &emsp;  &emsp; &emsp;  &emsp; &emsp;    # Map logic and interactivity (Leaflet.js) <br>
 ├── data.js      &emsp;   &emsp; &emsp;  &emsp; &emsp; &emsp;    # Regional environmental data  <br>
-└── armenia-marz.json &emsp;  # GeoJSON boundaries for Armenia's 11 marzes  <br>
+└── armenia-marz.json &emsp; &emsp;   # GeoJSON boundaries for Armenia's 11 marzes  <br>
 
 ## Tech Stack
 
