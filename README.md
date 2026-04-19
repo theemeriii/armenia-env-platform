@@ -16,10 +16,10 @@ Built as a mini capstone project with the goal of making environmental data abou
 - Fully responsive layout
 
 ## File Structure
-├── index.html   &emsp;       # Main page structure <br>
-├── style.css     &emsp;      # Styling and dark theme  <br>
-├── script.js     &emsp;      # Map logic and interactivity (Leaflet.js) <br>
-├── data.js      &emsp;       # Regional environmental data  <br>
+├── index.html   &emsp; &emsp; &emsp;       # Main page structure <br>
+├── style.css     &emsp;   &emsp; &emsp;   # Styling and dark theme  <br>
+├── script.js     &emsp;  &emsp; &emsp;     # Map logic and interactivity (Leaflet.js) <br>
+├── data.js      &emsp;   &emsp; &emsp;     # Regional environmental data  <br>
 └── armenia-marz.json &emsp;  # GeoJSON boundaries for Armenia's 11 marzes  <br>
 
 ## Tech Stack
